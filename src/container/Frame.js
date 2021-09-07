@@ -105,13 +105,13 @@ const Frame = () => {
   }, []);
 
   return (
-    <>
+    <div className='frame'>
       <Corner />
       <Camera mapRef={mapRef}>
         <Character characterRef={characterRef} />
         {/* <ButtonLayout /> */}
       </Camera>
-    </>
+    </div>
   );
 };
 
