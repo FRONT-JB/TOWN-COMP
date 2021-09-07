@@ -4,7 +4,6 @@ export const CURRENT_DIRECTIONS = {
   left: 'left',
   right: 'right',
 };
-
 export const PRESS_KEYS = {
   38: CURRENT_DIRECTIONS.up,
   37: CURRENT_DIRECTIONS.left,

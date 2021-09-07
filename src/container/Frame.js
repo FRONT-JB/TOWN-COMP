@@ -1,18 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Camera from '../components/Camera';
 import Character from '../components/Character';
 import Corner from '../components/Corner';
-import { CURRENT_DIRECTIONS, PRESS_KEYS } from '../constant/index';
+import { CURRENT_DIRECTIONS, PRESS_KEYS } from '../constant';
 
 const Frame = () => {
   const [direction, setDirection] = useState([]);
   const speedRef = useRef(1);
   const characterRef = useRef(null);
+  const mapRef = useRef(null);
   const xRef = useRef(90);
   const yRef = useRef(34);
-  const mapRef = useRef(null);
 
-  const handleCharacter = useCallback(() => {
+  const handleCharacter = () => {
     const heldDirection = direction[0];
     const pixelSize = parseInt(
       getComputedStyle(document.documentElement).getPropertyValue(
@@ -72,7 +72,7 @@ const Frame = () => {
     characterRef.current.style.transform = `translate3d( ${
       xRef.current * pixelSize
     }px, ${yRef.current * pixelSize}px, 0 )`;
-  }, [xRef, yRef]);
+  };
 
   const step = () => {
     handleCharacter();
@@ -83,7 +83,7 @@ const Frame = () => {
 
   useEffect(() => {
     document.addEventListener('keydown', (e) => {
-      var dir = PRESS_KEYS[e.which];
+      const dir = PRESS_KEYS[e.which];
       if (dir && direction?.indexOf(dir) === -1) {
         const newDirection = direction.unshift(dir);
         setDirection(newDirection);
@@ -91,8 +91,8 @@ const Frame = () => {
     });
 
     document.addEventListener('keyup', (e) => {
-      var dir = PRESS_KEYS[e.which];
-      var index = direction.indexOf(dir);
+      const dir = PRESS_KEYS[e.which];
+      const index = direction.indexOf(dir);
       if (index > -1) {
         const newDirection = direction.splice(index, 1);
         setDirection(newDirection);
